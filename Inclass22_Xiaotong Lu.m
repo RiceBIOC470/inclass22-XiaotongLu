@@ -1,5 +1,70 @@
 %Inclass 22
 
+%GB comments
+1 60 No discussion of your results as the question asks. You were close in answering the question but didn’t finish it correctly. Please see this solution:
+figure; hold on;
+ku=0;
+n=1;
+gxfunc2 = @(x,kb) kb*x.^n./(1+x.^n)-x;
+for kb=0:0.05:5
+    gxfunc = @(x) gxfunc2(x,kb);
+    for x0 = 0:0.1:3
+        [rt,~,exitflag] = fzero(gxfunc,x0);
+        if exitflag == 1
+            plot(kb,rt,'k.');
+        end
+    end
+end
+hold off;
+xlabel('k_b');ylabel('Fixed points');
+set(gca,'Fontsize',24);
+ 
+figure; hold on;
+ku=0;
+n=4;
+gxfunc2 = @(x,kb) kb*x.^n./(1+x.^n)-x;
+for kb=0:0.05:5
+    gxfunc = @(x) gxfunc2(x,kb);
+    for x0 = 0:0.1:3
+        [rt,~,exitflag] = fzero(gxfunc,x0);
+        if exitflag == 1
+            plot(kb,rt,'k.');
+        end
+    end
+end
+hold off;
+xlabel('k_b');ylabel('Fixed points');
+set(gca,'Fontsize',24);
+ 
+figure; hold on;
+ku=0;
+n=8;
+gxfunc2 = @(x,kb) kb*x.^n./(1+x.^n)-x;
+for kb=0:0.05:5
+    gxfunc = @(x) gxfunc2(x,kb);
+    for x0 = 0:0.1:3
+        [rt,~,exitflag] = fzero(gxfunc,x0);
+        if exitflag == 1
+            plot(kb,rt,'k.');
+        end
+    end
+end
+hold off;
+xlabel('k_b');ylabel('Fixed points');
+set(gca,'Fontsize',24);
+
+2 80 This was not correct either, but close. Please see this for further direction
+figure; hold on; 
+kb = 0; 
+for ku = 0:0.05:5
+    polycoeff = [1, -ku, +1, -kb] 
+    rts = roots(polycoeff); 
+    rts = rts(imag(rts)==0); 
+    plot(ku*ones(length(rts),1),rts,'r.');
+end 
+title('n =2')
+Overall 70
+
 %1. Consider the case of the auto-activating gene that we discussed in class
 %today. Make a bifurcation diagram for this system by varying the
 %activated transcription rate for three cases - in which 1, 4, or 8 copies of the
